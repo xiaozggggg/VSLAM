@@ -1,0 +1,15 @@
+<launch>
+    <!-- 设置使用真实时间 -->
+    <param name="use_sim_time" value="false" />
+
+    <!-- Main node -->   
+    <node name="ros_stereo_fusion_node" pkg="orb_slam3_ros" type="ros_stereo_fusion_node" output="screen">
+        <param name="settings_file"     type="string" value="$(find orb_slam3_ros)/config/realsense_imu_848_480.yaml"/>
+        <!-- topics -->
+        <param name="rtk_topic"         type="string"   value="/nanobot/gpsposition" />
+        <param name="vslam_topic"       type="string"   value="/orb_slam3/body_odom" />
+        <param name="fusion_topic"      type="string"    value="/mower/vslam_pose" />
+        <param name="state_topic"       type="string"   value="/mower/vslam_state" />
+        <param name="save_csv_flag"     type="bool"     value="true" />
+    </node>
+</launch>

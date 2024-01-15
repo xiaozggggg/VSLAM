@@ -1,0 +1,7 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/hui-lian/ChenShiKai/cl/stable/devel/lib/python3/dist-packages",
+        "/home/hui-lian/CV_bridge_noetic/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
+}

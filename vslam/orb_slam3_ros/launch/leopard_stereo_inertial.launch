@@ -1,0 +1,51 @@
+<launch>
+    <!-- 设置使用真实时间 -->
+    <param name="use_sim_time" value="false" />
+
+    <!-- Trajectory path -->
+        <arg name="result_dir" default="$(find orb_slam3_ros)/trajectory"/>
+        <arg name="keyframe_traj_file" default="$(arg result_dir)/KeyFrameTrajectory_TUM_Format.txt" />
+        <arg name="frame_traj_file" default="$(arg result_dir)/FrameTrajectory_TUM_Format.txt" />  
+
+    <!-- VSLAM节点 -->   
+    <node name="orb_slam3" pkg="orb_slam3_ros" type="ros_stereo_inertial_node" output="screen">
+        <param name="voc_file"      type="string" value="$(find orb_slam3_ros)/orb_slam3/Vocabulary/ORBvoc.bin"/>
+        <param name="settings_file" type="string" value="$(find orb_slam3_ros)/config/realsense_imu_848_480.yaml"/>
+        <param name="world_frame_id"    type="string"   value="world" />
+        <param name="cam_frame_id"      type="string"   value="camera" />
+        <param name="imu_frame_id"      type="string"   value="imu" />
+        <!-- <param name="imu_topic"         type="string"   value="/mower/camera/imu" />
+        <param name="camera1_topic"     type="string"   value="/mower/camera/0/image_gray" />
+        <param name="camera2_topic"     type="string"   value="/mower/camera/1/image_gray" /> -->
+        <param name="imu_topic"         type="string"   value="/camera/imu" />
+        <param name="camera1_topic"     type="string"   value="/camera/infra1/image_rect_raw" />
+        <param name="camera2_topic"     type="string"   value="/camera/infra2/image_rect_raw" />
+
+        <param name="enable_pangolin"   type="bool"     value="true" />
+        <param name="time_shift"        type="int"      value="0"/> 
+        <param name="keyframe_traj_file" type="string" value="$(arg keyframe_traj_file)" />
+        <param name="frame_traj_file"    type="string" value="$(arg frame_traj_file)" />
+    </node>
+
+    <!-- TF translation node -->
+    <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="1.63 0.05 0 0 0 0 1 base_link world 100" />
+    
+    <!-- Yolo预警节点 -->
+    <node name="yolo_warning" pkg="Yolowarning" type="warning_node" output="screen">
+        <param name="yolo_sub_topic"   type="string" value="/orb_slam3/yolo_box_data"/>
+        <param name="warning_topic"    type="string" value="/mower/warning"/>
+        <param name="coordinate_file"  type="string" value="$(find Yolowarning)/coor.txt"/>
+    </node>
+    
+
+    <!-- 定位融合节点 -->
+    <!-- <node name="ros_stereo_fusion" pkg="orb_slam3_ros" type="ros_stereo_fusion" output="screen">
+        topics
+        <param name="rtk_topic"         type="string"   value="/nanobot/gpsposition" />
+        <param name="vslam_topic"       type="string"   value="/orb_slam3/camera_pose" />
+        <param name="publish_topic"     type="string"   value="/vslam_pose" />
+        <param name="save_csv_flag"     type="bool"     value="false" />
+    </node> -->
+</launch>
+
+<!-- launch-prefix="gdb -ex run  args" -->

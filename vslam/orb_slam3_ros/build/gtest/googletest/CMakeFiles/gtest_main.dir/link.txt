@@ -1,0 +1,1 @@
+/usr/bin/g++ -fPIC  -fopenmp -Wall   -O3 -std=c++14 -g -shared -Wl,-soname,libgtest_maind.so -o ../lib/libgtest_maind.so CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -Wl,-rpath,/home/chen/ROS/catkin_orb_slam3_ros/src/SLAM/build/gtest/lib ../lib/libgtestd.so -lpthread 

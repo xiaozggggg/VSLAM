@@ -1,0 +1,131 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# System config
+#--------------------------------------------------------------------------------------------
+
+# When the variables are commented, the system doesn't load a previous session or not store the current one
+
+# If the LoadFile doesn't exist, the system give a message and create a new Atlas from scratch
+#System.LoadAtlasFromFile: "Session_MH01_MH02_MH03_Stereo60_Pseudo"
+
+# The store file is created from the current session, if a file with the same name exists it is deleted
+#System.SaveAtlasToFile: "Session_MH01_MH02_MH03_Stereo60_Pseudo"
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+File.version: "1.0"
+
+Camera.type: "PinHole"
+
+# Camera calibration and distortion parameters (OpenCV) 
+Camera1.fx: 480.804
+Camera1.fy: 480.924
+Camera1.cx: 481.119
+Camera1.cy: 293.317
+
+Camera1.k1: -0.35226214
+Camera1.k2:  0.14234178
+Camera1.p1: -0.00042236
+Camera1.p2: -0.00011259
+
+Camera2.fx: 479.582
+Camera2.fy: 479.743
+Camera2.cx: 476.533
+Camera2.cy: 293.889
+
+Camera2.k1: -0.34174826
+Camera2.k2:  0.12413558
+Camera2.p1: -0.00030482
+Camera2.p2:  0.00083724
+
+Camera.width: 960
+Camera.height: 600
+
+# Camera.newWidth: 640
+# Camera.newHeight: 320
+
+# Camera frames per second 
+Camera.fps: 30
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+# Close/Far threshold. Baseline times.
+Stereo.ThDepth: 72.0
+
+Stereo.T_c1_c2: !!opencv-matrix
+  rows: 4
+  cols: 4
+  dt: f
+  data: [0.99996774, -0.00037378, 0.00802362, -0.1499645,
+         0.00039472, 0.99999652, -0.00260778, -0.00012284,
+         -0.00802262, 0.00261086, 0.99996441, 0.00056915,
+         0,0,0,1.]
+
+# Transformation from camera 0 to body-frame (imu)
+IMU.T_b_c1: !!opencv-matrix
+  rows: 4
+  cols: 4
+  dt: f
+  data: [0.00777212, 0.99994957, -0.0063599, -0.02200046,
+         -0.99996876, 0.00776281, -0.00148725, 0.09576414,
+         -0.0014378, 0.00637126, 0.99997867, 0.01297009,
+         0.0, 0.0, 0.0, 1.0]
+
+# IMU noise
+IMU.NoiseGyro: 0.00019140982165620463
+IMU.NoiseAcc: 0.0013958855311392514
+IMU.GyroWalk: 2.031921076882554e-06
+IMU.AccWalk: 2.4770922307812617e-05
+IMU.Frequency: 200.0
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 1000
+
+# ORB Extractor: Scale factor between levels in the scale pyramid 	
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid	
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast			
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1.0
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2.0
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3.0
+Viewer.ViewpointX: 0.0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500.0
+Viewer.imageViewScale: 1.0
+
+#--------------------------------------------------------------------------------------------
+# Load yolo parameters.
+#--------------------------------------------------------------------------------------------
+Yolo.enable: "false"
+Yolo.coco: "/home/hui-lian/ChenShiKai/cl/stable/src/orb_slam3_ros/coco.txt"
+Yolo.engine: "/home/hui-lian/ChenShiKai/cl/stable/src/orb_slam3_ros/yolov5s-seg.engine"
+
+#--------------------------------------------------------------------------------------------
+# Working mode switch.
+#--------------------------------------------------------------------------------------------
+System.WorkingMode: 0
+System.SaveAtlasToFile: "Vslam_map" 
+System.LoadAtlasFromFile: "Vslam_map"

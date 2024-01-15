@@ -1,0 +1,1 @@
+/usr/bin/g++ -fPIC  -fopenmp -Wall   -O3 -std=c++14 -g -shared -Wl,-soname,libgmock_maind.so -o ../lib/libgmock_maind.so CMakeFiles/gmock_main.dir/src/gmock_main.cc.o  -Wl,-rpath,/home/chen/ROS/catkin_orb_slam3_ros/src/SLAM/build/gtest/lib ../lib/libgmockd.so ../lib/libgtestd.so -lpthread 

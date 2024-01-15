@@ -1,0 +1,8 @@
+prefix=/home/chen/ROS/catkin_orb_slam3_ros/src/SLAM/build/devel
+
+Name: orb_slam3_ros
+Description: Description of orb_slam3_ros
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib -l{PROJECT_NAME} -llibDBoW2 -llibg2o -llibncnn -llibGeographic
+Requires: roscpp std_msgs cv_bridge image_transport tf sensor_msgs dynamic_reconfigure message_runtime

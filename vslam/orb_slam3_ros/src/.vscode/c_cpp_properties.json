@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/hui-lian/ChenShiKai/cl/stable/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/hui-lian/CV_bridge_noetic/src/cv_bridge/include/**",
+        "/home/hui-lian/CV_bridge_noetic/src/image_geometry/include/**",
+        "/home/hui-lian/ChenShiKai/cl/stable/src/orb_slam3_ros/include/**",
+        "/home/hui-lian/ChenShiKai/cl/stable/src/util/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
